@@ -11,6 +11,7 @@ public class TriggerController : MonoBehaviour
         {
             EventController.instance.ElevatorUp();
             EventController.instance.ObsticalMove();
+            EventController.instance.PushCollectable();
         }
     }
 

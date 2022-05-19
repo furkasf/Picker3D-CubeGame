@@ -31,4 +31,14 @@ public class EventController : MonoBehaviour
             ObsticalMoveEvent();
         }
     }
+
+    public event Action PushCollectableItem;
+
+    public void PushCollectable()
+    {
+        if(PushCollectableItem != null)
+        {
+            PushCollectableItem();
+        }
+    }
 }
