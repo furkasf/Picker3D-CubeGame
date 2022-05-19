@@ -10,6 +10,7 @@ public class TriggerController : MonoBehaviour
         if(other.tag == "Player")
         {
             EventController.instance.ElevatorUp();
+            EventController.instance.ObsticalMove();
         }
     }
 

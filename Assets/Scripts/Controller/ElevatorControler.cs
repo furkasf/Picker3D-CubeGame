@@ -10,8 +10,14 @@ public class ElevatorControler : MonoBehaviour
         EventController.instance.ElevetorUpEvent += MoveUpElevator;
     }
 
-    public void MoveUpElevator()
+    void MoveUpElevator()
     {
-        transform.DOMoveY(0, 1.5f, true);
+        transform.DOMoveY(0, 5f, true);
+    }
+
+    private void OnDestroy()
+    {
+        //just in case avoid nullptr error if elevator destroy for some reason 
+        EventController.instance.ElevetorUpEvent -= MoveUpElevator;
     }
 }

@@ -21,4 +21,14 @@ public class EventController : MonoBehaviour
             ElevetorUpEvent();
         }
     }
+
+    public event Action ObsticalMoveEvent;
+
+    public void ObsticalMove()
+    {
+        if(ObsticalMoveEvent != null)
+        {
+            ObsticalMoveEvent();
+        }
+    }
 }
