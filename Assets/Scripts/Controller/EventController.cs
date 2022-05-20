@@ -44,9 +44,14 @@ public class EventController : MonoBehaviour
 
     public IEnumerator SyncTheTrail()
     {
+        PlayerControler.instance.isStop = true;
+        PushCollectableItem();
+        yield return new WaitForSecondsRealtime(2f);
         ElevatorUp();
         yield return new WaitForSecondsRealtime(2f);
         ObsticalMove();
         yield return new WaitForSecondsRealtime(2f);
+        PlayerControler.instance.isStop = false;
+        yield return null;
     }
 }

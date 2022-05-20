@@ -10,9 +10,7 @@ public class TriggerController : MonoBehaviour
         if(other.tag == "Player")
         {
             Debug.Log("triggered");
-            PlayerControler.instance.isStop = true;
             StartCoroutine(EventController.instance.SyncTheTrail());
-            PlayerControler.instance.isStop = false;
         }
     }
 

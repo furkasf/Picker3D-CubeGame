@@ -18,9 +18,9 @@ public class ForceControll : MonoBehaviour
 
     void PushAllCollectedItem()
     {
-        if(transform.tag == "Collected")
+        if(transform.tag == "Collectable")
         {
-            rb.AddForce(Vector3.forward * 40, ForceMode.Impulse);
+            rb.AddForce(Vector3.forward * 10, ForceMode.Impulse);
         }
     }
 

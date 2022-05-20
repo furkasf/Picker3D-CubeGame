@@ -23,9 +23,15 @@ public class PlayerControler : MonoBehaviour
 
     private void Update()
     {
-       // if(!_isStop)
-         //   move.Move(duration);
+       if(!isStop)
+           move.Move(duration);
     }
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "Collectable")
+        {
+            other.tag = "Collected";
+        }
+    }
 }
