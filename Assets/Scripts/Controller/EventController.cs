@@ -41,4 +41,12 @@ public class EventController : MonoBehaviour
             PushCollectableItem();
         }
     }
+
+    public IEnumerator SyncTheTrail()
+    {
+        ElevatorUp();
+        yield return new WaitForSecondsRealtime(2f);
+        ObsticalMove();
+        yield return new WaitForSecondsRealtime(2f);
+    }
 }

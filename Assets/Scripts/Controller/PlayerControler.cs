@@ -9,7 +9,7 @@ public class PlayerControler : MonoBehaviour
 
     [Header("player speed")]
     [SerializeField] float duration;
-    private bool _isStop;
+    public bool isStop;
 
     IPlayerMove move;
 
@@ -17,14 +17,14 @@ public class PlayerControler : MonoBehaviour
     {
         duration = 5f;
         move = GetComponent<PlayerMoveMouse>();
-        _isStop = false;
+        isStop = false;
         if(instance == null) instance = this;
     }
 
     private void Update()
     {
-        if(!_isStop)
-            move.Move(duration);
+       // if(!_isStop)
+         //   move.Move(duration);
     }
 
     

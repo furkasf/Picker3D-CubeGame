@@ -9,9 +9,10 @@ public class TriggerController : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            EventController.instance.ElevatorUp();
-            EventController.instance.ObsticalMove();
-            EventController.instance.PushCollectable();
+            Debug.Log("triggered");
+            PlayerControler.instance.isStop = true;
+            StartCoroutine(EventController.instance.SyncTheTrail());
+            PlayerControler.instance.isStop = false;
         }
     }
 
