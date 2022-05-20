@@ -32,13 +32,13 @@ public class EventController : MonoBehaviour
         }
     }
 
-    public event Action<int> PushCollectableItemEvent;
+    public event Action PushCollectableItemEvent;
 
-    public void PushCollectable(int ID)
+    public void PushCollectable()
     {
         if(PushCollectableItemEvent != null)
         {
-            PushCollectableItemEvent(ID);
+            PushCollectableItemEvent();
         }
     }
 
@@ -46,17 +46,14 @@ public class EventController : MonoBehaviour
     {
         //just in case some times when prototypin coresponding object dont have in scene and cause annoying errors
         if (PlayerControler.instance != null)
-        {
-            PlayerControler.instance.isStop = true;
-            if (PushCollectableItemEvent != null)
-                PushCollectableItemEvent(ID);
+        {   
             yield return new WaitForSecondsRealtime(2f);
             if (ElevetorUpEvent != null)
                 ElevatorUp(ID);
-            yield return new WaitForSecondsRealtime(2f);
-            if (ObsticalMoveEvent == null)
+            yield return new WaitForSecondsRealtime(0.5f);
+            if (ObsticalMoveEvent != null)
                 ObsticalMove(ID);
-            yield return new WaitForSecondsRealtime(2f);
+            yield return new WaitForSecondsRealtime(0.2f);
             PlayerControler.instance.isStop = false;
         }
         yield return null;

@@ -16,7 +16,7 @@ public class ElevatorControler : MonoBehaviour
     {
         if(ID == this.ID)
         {
-            transform.DOMoveY(0, 5f, true);
+            transform.DOMoveY(0, .8f, false);
         }
     }
 

@@ -8,7 +8,7 @@ public class PlayerMoveMouse : MonoBehaviour , IPlayerMove
 
     public void Move(float _duration)
     {
-        transform.position += Vector3.forward * Time.deltaTime;
+        transform.position += Vector3.forward * 5 * Time.deltaTime;
 
         if (Input.GetMouseButtonDown(0))
         {

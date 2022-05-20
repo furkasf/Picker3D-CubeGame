@@ -5,7 +5,6 @@ using UnityEngine;
 public class ForceControll : MonoBehaviour
 {
     private Rigidbody rb;
-    [SerializeField] int ID;
 
     private void Awake()
     {
@@ -17,19 +16,19 @@ public class ForceControll : MonoBehaviour
         EventController.instance.PushCollectableItemEvent += PushAllCollectedItem;
     }
 
-    void PushAllCollectedItem(int ID)
+    void PushAllCollectedItem()
     {
-        if(ID == this.ID)
+
+        if (transform.tag == "Collected")
         {
-            if (transform.tag == "Collectable")
-            {
-                rb.AddForce(Vector3.forward * 10, ForceMode.Impulse);
-            }
+            rb.AddForce(Vector3.forward * 10, ForceMode.Impulse);
         }
+        
     }
 
     private void OnDestroy()
     {
         EventController.instance.PushCollectableItemEvent -= PushAllCollectedItem;
+        //avtive paticul effect
     }
 }
