@@ -23,8 +23,8 @@ public class PlayerControler : MonoBehaviour
 
     private void Update()
     {
-       if(!isStop)
-           move.Move(duration);
+      // if(!isStop)
+          // move.Move(duration);
     }
 
     private void OnTriggerEnter(Collider other)

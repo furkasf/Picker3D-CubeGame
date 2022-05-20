@@ -32,26 +32,33 @@ public class EventController : MonoBehaviour
         }
     }
 
-    public event Action PushCollectableItem;
+    public event Action PushCollectableItemEvent;
 
     public void PushCollectable()
     {
-        if(PushCollectableItem != null)
+        if(PushCollectableItemEvent != null)
         {
-            PushCollectableItem();
+            PushCollectableItemEvent();
         }
     }
 
     public IEnumerator SyncTheTrail()
     {
-        PlayerControler.instance.isStop = true;
-        PushCollectableItem();
-        yield return new WaitForSecondsRealtime(2f);
-        ElevatorUp();
-        yield return new WaitForSecondsRealtime(2f);
-        ObsticalMove();
-        yield return new WaitForSecondsRealtime(2f);
-        PlayerControler.instance.isStop = false;
+        //just in case some times when prototypin coresponding object dont have in scene and cause annoying errors
+        if (PlayerControler.instance != null)
+        {
+            PlayerControler.instance.isStop = true;
+            if (PushCollectableItemEvent != null)
+                PushCollectableItemEvent();
+            yield return new WaitForSecondsRealtime(2f);
+            if (ElevetorUpEvent != null)
+                ElevatorUp();
+            yield return new WaitForSecondsRealtime(2f);
+            if (ObsticalMoveEvent == null)
+                ObsticalMove();
+            yield return new WaitForSecondsRealtime(2f);
+            PlayerControler.instance.isStop = false;
+        }
         yield return null;
     }
 }

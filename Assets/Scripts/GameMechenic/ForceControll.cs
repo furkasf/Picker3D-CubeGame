@@ -13,7 +13,7 @@ public class ForceControll : MonoBehaviour
 
     private void Start()
     {
-        EventController.instance.PushCollectableItem += PushAllCollectedItem;
+        EventController.instance.PushCollectableItemEvent += PushAllCollectedItem;
     }
 
     void PushAllCollectedItem()
@@ -26,6 +26,6 @@ public class ForceControll : MonoBehaviour
 
     private void OnDestroy()
     {
-        EventController.instance.PushCollectableItem -= PushAllCollectedItem;
+        EventController.instance.PushCollectableItemEvent -= PushAllCollectedItem;
     }
 }

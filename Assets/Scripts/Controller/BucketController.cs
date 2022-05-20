@@ -22,13 +22,12 @@ public class BucketController : MonoBehaviour
         collectedBallNumber = 0;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.other.tag == "Collected")
+        if (other.tag == "Collected")
         {
             collectedBallNumber++;
             score.text = maxBallCapacity + " / " + collectedBallNumber;
-            collision.rigidbody.isKinematic = true;
         }
     }
 }
