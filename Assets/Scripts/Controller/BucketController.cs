@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class BucketController : MonoBehaviour
 {
+
     public int maxBallCapacity;
     int collectedBallNumber;
     TextMeshPro score;
+
     private void Awake()
     {
         for (int i = 0; i < transform.childCount; i++)

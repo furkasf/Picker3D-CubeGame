@@ -5,6 +5,7 @@ using UnityEngine;
 public class ForceControll : MonoBehaviour
 {
     private Rigidbody rb;
+    [SerializeField] int ID;
 
     private void Awake()
     {
@@ -16,11 +17,14 @@ public class ForceControll : MonoBehaviour
         EventController.instance.PushCollectableItemEvent += PushAllCollectedItem;
     }
 
-    void PushAllCollectedItem()
+    void PushAllCollectedItem(int ID)
     {
-        if(transform.tag == "Collectable")
+        if(ID == this.ID)
         {
-            rb.AddForce(Vector3.forward * 10, ForceMode.Impulse);
+            if (transform.tag == "Collectable")
+            {
+                rb.AddForce(Vector3.forward * 10, ForceMode.Impulse);
+            }
         }
     }
 

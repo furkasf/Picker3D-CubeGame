@@ -5,14 +5,19 @@ using UnityEngine;
 
 public class ElevatorControler : MonoBehaviour
 {
+    [SerializeField] private int ID;
+
     private void Start()
     {
         EventController.instance.ElevetorUpEvent += MoveUpElevator;
     }
 
-    void MoveUpElevator()
+    void MoveUpElevator(int ID)
     {
-        transform.DOMoveY(0, 5f, true);
+        if(ID == this.ID)
+        {
+            transform.DOMoveY(0, 5f, true);
+        }
     }
 
     private void OnDestroy()

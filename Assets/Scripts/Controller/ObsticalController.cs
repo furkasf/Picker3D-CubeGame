@@ -6,7 +6,8 @@ using UnityEngine;
 public class ObsticalController : MonoBehaviour
 {
     [SerializeField]private Transform _rightObstical;
-    [SerializeField] private Transform _leftObstical;
+    [SerializeField]private Transform _leftObstical;
+    [SerializeField] private int ID;
 
     private void Awake()
     {
@@ -19,11 +20,14 @@ public class ObsticalController : MonoBehaviour
         EventController.instance.ObsticalMoveEvent += MoveFromRoad;
     }
 
-    void MoveFromRoad()
+    void MoveFromRoad(int ID)
     {
-        _rightObstical.DORotate(new Vector3(0, 0, 90),1);
-        _leftObstical.DORotate(new Vector3(0, 0, 90), 1);
-        Debug.Log(_rightObstical.name + "          " + _leftObstical.name);
+       if(ID == this.ID)
+        {
+            _rightObstical.DORotate(new Vector3(0, 0, 90), 1);
+            _leftObstical.DORotate(new Vector3(0, 0, 90), 1);
+            Debug.Log(_rightObstical.name + "          " + _leftObstical.name);
+        }
     }
 
     private void OnDestroy()

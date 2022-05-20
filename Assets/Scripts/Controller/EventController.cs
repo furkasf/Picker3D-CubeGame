@@ -12,50 +12,50 @@ public class EventController : MonoBehaviour
         if(instance == null) instance = this;
     }
 
-    public event Action ElevetorUpEvent;
+    public event Action<int> ElevetorUpEvent;
 
-    public void ElevatorUp()
+    public void ElevatorUp(int ID)
     {
         if(ElevetorUpEvent != null)
         {
-            ElevetorUpEvent();
+            ElevetorUpEvent(ID);
         }
     }
 
-    public event Action ObsticalMoveEvent;
+    public event Action<int> ObsticalMoveEvent;
 
-    public void ObsticalMove()
+    public void ObsticalMove(int ID)
     {
         if(ObsticalMoveEvent != null)
         {
-            ObsticalMoveEvent();
+            ObsticalMoveEvent(ID);
         }
     }
 
-    public event Action PushCollectableItemEvent;
+    public event Action<int> PushCollectableItemEvent;
 
-    public void PushCollectable()
+    public void PushCollectable(int ID)
     {
         if(PushCollectableItemEvent != null)
         {
-            PushCollectableItemEvent();
+            PushCollectableItemEvent(ID);
         }
     }
 
-    public IEnumerator SyncTheTrail()
+    public IEnumerator SyncTheTrail(int ID)
     {
         //just in case some times when prototypin coresponding object dont have in scene and cause annoying errors
         if (PlayerControler.instance != null)
         {
             PlayerControler.instance.isStop = true;
             if (PushCollectableItemEvent != null)
-                PushCollectableItemEvent();
+                PushCollectableItemEvent(ID);
             yield return new WaitForSecondsRealtime(2f);
             if (ElevetorUpEvent != null)
-                ElevatorUp();
+                ElevatorUp(ID);
             yield return new WaitForSecondsRealtime(2f);
             if (ObsticalMoveEvent == null)
-                ObsticalMove();
+                ObsticalMove(ID);
             yield return new WaitForSecondsRealtime(2f);
             PlayerControler.instance.isStop = false;
         }
