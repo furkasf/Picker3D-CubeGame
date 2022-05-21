@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collected
   - Collectable
+  - FinishLine
   layers:
   - Default
   - TransparentFX
