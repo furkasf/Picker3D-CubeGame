@@ -439,7 +439,7 @@ GameObject:
   m_Component:
   - component: {fileID: 305765890954401311}
   m_Layer: 0
-  m_Name: LevelContainer1
+  m_Name: Level1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1700,6 +1700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38997a75dec1c4dbb436a2806bb97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 0
   maxBallCapacity: 20
 --- !u!114 &8239932909940097783
 MonoBehaviour:
@@ -3463,6 +3464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38997a75dec1c4dbb436a2806bb97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 0
   maxBallCapacity: 20
 --- !u!1001 &5656160015401169521
 PrefabInstance:
@@ -4201,6 +4203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a38997a75dec1c4dbb436a2806bb97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 0
   maxBallCapacity: 10
 --- !u!1001 &6629916535035247555
 PrefabInstance:

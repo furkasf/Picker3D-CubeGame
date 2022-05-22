@@ -11,6 +11,7 @@ public class PlayerControler : MonoBehaviour
     public List<GameObject> collectedBalls;
     [SerializeField] float duration;
     public bool isStop;
+    public GameObject ui;
 
     IPlayerMove move;
 
@@ -38,6 +39,8 @@ public class PlayerControler : MonoBehaviour
             other.GetComponent<ForceControll>().enabled = true; ;
             collectedBalls.Add(other.gameObject);
         }
-        if (other.tag == "FinishLine") isStop = true; //after add push ford the player to laaderpath also activate the fire particul end of player
+        if (other.tag == "FinishLine") 
+                isStop = true; //after add push ford the player to laaderpath also activate the fire particul end of player
+                ui.SetActive(true);
     }
 }
