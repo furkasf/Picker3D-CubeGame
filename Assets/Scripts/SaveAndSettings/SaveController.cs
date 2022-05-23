@@ -11,6 +11,7 @@ public class SaveController : MonoBehaviour
     private void Awake()
     {
         if(instance == null) instance = this;
+        Debug.Log(Application.persistentDataPath);
     }
 
     Save SaveObjectsInGame(int _levelindex, int _score)

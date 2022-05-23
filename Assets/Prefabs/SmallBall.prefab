@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6184028879408538524}
   - component: {fileID: -7796348341794846678}
   m_Layer: 0
-  m_Name: CollectableItem1
+  m_Name: SmallBall
   m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

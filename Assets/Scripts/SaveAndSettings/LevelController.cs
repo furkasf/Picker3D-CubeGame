@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class LevelController : MonoBehaviour
@@ -39,7 +40,7 @@ public class LevelController : MonoBehaviour
     }
     public void RestartLevel()
     {
-        if (SaveController.instance.LoadGameSave() != null)
+        if (File.Exists(Application.persistentDataPath + "/Picker3D.save"))
         {
             Save saveFile = SaveController.instance.LoadGameSave();
             PlayerControler.instance.collectedBallCounter = 0;
