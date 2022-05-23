@@ -10,8 +10,10 @@ public class PlayerControler : MonoBehaviour
     [Header("player speed")]
     public List<GameObject> collectedBalls;
     [SerializeField] float duration;
+    public int collectedBallCounter;
     public bool isStop;
     public GameObject ui;
+
 
     IPlayerMove move;
 
@@ -20,6 +22,7 @@ public class PlayerControler : MonoBehaviour
         duration = 5f;
         collectedBalls = new List<GameObject>();
         move = GetComponent<PlayerMoveMouse>();
+        collectedBallCounter = 0;
         isStop = false;
         if(instance == null) instance = this;
     }
@@ -34,6 +37,7 @@ public class PlayerControler : MonoBehaviour
     {
         if(other.tag == "Collectable")
         {
+            collectedBallCounter++;
             other.tag = "Collected";
             //instead of adding script companent run time dynamicly this way chiper way to do
             other.GetComponent<ForceControll>().enabled = true; ;

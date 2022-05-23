@@ -10,10 +10,18 @@ public class LevelController : MonoBehaviour
     int level = 0;
     int maxLevel = 3;
 
+    private void Awake()
+    {
+       
+        Instantiate(gameSettings.LevelPrefabs[0].gameObject, GameObject.Find("TheLevelContailner").transform);
+       
+    }
+
     public void NextLevel()
     {
         if (level < maxLevel)
         {
+            PlayerControler.instance.collectedBallCounter = 0;
             Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
             level++;
             Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
@@ -28,6 +36,7 @@ public class LevelController : MonoBehaviour
     }
     public void RestartLevel()
     {
+        PlayerControler.instance.collectedBallCounter = 0;
         Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
         Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
         UI.SetActive(false);

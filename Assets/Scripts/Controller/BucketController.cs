@@ -30,39 +30,55 @@ public class BucketController : MonoBehaviour
  
         collectedBallNumber++;
         score.text = maxBallCapacity + " / " + collectedBallNumber;
-        
-        //if collected balls >= max ballcapatiy => destroy ball and start coroutine
-        //after clean up all balls from list
+
+        //that long compational expensive aproac refatored basicly use ball counter in plater class
+        #region
+        ////if collected balls >= max ballcapatiy => destroy ball and start coroutine
+        ////after clean up all balls from list
+        //if (collectedBallNumber >= maxBallCapacity)
+        //{
+           
+        //    foreach(GameObject ball in PlayerControler.instance.collectedBalls.ToList())
+        //    {
+        //        if(ball != null)
+        //        {
+        //            Destroy(ball, 0.2f);
+        //            PlayerControler.instance.collectedBalls.Remove(ball);
+        //        }
+        //    }
+        //    StartCoroutine(EventController.instance.SyncTheTrail(ID));
+
+        //}
+
+        //else if(PlayerControler.instance.collectedBalls.Count < maxBallCapacity || maxBallCapacity < collectedBallNumber)
+        //{
+        //    //ToList() just temporary solution if you have time refator code best way to deal with collection modification in foreach
+        //    foreach (GameObject ball in PlayerControler.instance.collectedBalls.ToList())
+        //    {
+        //        if (ball != null)
+        //        {
+        //            Destroy(ball, 0.2f);
+        //            PlayerControler.instance.collectedBalls.Remove(ball);
+        //        }
+        //    }
+        //    Debug.Log("game over");
+        //    //start coroutine weait 3 sec and activate lose ui
+        //    //start coroutine weait 3 sec and activate lose ui
+            
+        //}
+        #endregion
+
         if(collectedBallNumber >= maxBallCapacity)
         {
-           
-            foreach(GameObject ball in PlayerControler.instance.collectedBalls.ToList())
-            {
-                if(ball != null)
-                {
-                    Destroy(ball, 0.2f);
-                    PlayerControler.instance.collectedBalls.Remove(ball);
-                }
-            }
+            Destroy(other.gameObject, 0.2f);
+            //add particul if you find a time
             StartCoroutine(EventController.instance.SyncTheTrail(ID));
-
+            PlayerControler.instance.collectedBallCounter = 0;
         }
-
-        else if(PlayerControler.instance.collectedBalls.Count < maxBallCapacity || maxBallCapacity < collectedBallNumber)
+        else if(PlayerControler.instance.collectedBallCounter < maxBallCapacity && collectedBallNumber < maxBallCapacity)
         {
-            //ToList() just temporary solution if you have time refator code best way to deal with collection modification in foreach
-            foreach (GameObject ball in PlayerControler.instance.collectedBalls.ToList())
-            {
-                if (ball != null)
-                {
-                    Destroy(ball, 0.2f);
-                    PlayerControler.instance.collectedBalls.Remove(ball);
-                }
-            }
-            Debug.Log("game over");
-            //start coroutine weait 3 sec and activate lose ui
-            //start coroutine weait 3 sec and activate lose ui
-            
+            Destroy(other.gameObject, 0.2f);
+            //open game ui
         }
     }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 672b45025708dbb448e7333fea1f603b, type: 3}
   m_Name: GameSetting
   m_EditorClassIdentifier: 
-  playerDefaultPos: {x: -2.869728, y: 0.73, z: -8.402551}
+  playerDefaultPos: {x: 4.5, y: -2.5, z: 7}
   LevelPrefabs:
   - {fileID: 2604354630160982547, guid: 929f3af9951e01c41abef7d6f3ee820a, type: 3}
   - {fileID: 2604354630160982547, guid: 8ad05f3a6cacef64ca6d57237dd7350b, type: 3}
