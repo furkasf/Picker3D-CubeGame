@@ -15,4 +15,5 @@ MonoBehaviour:
   playerDefaultPos: {x: 4.5, y: -2.5, z: 7}
   LevelPrefabs:
   - {fileID: 2604354630160982547, guid: 929f3af9951e01c41abef7d6f3ee820a, type: 3}
-  - {fileID: 2604354630160982547, guid: 8ad05f3a6cacef64ca6d57237dd7350b, type: 3}
+  - {fileID: 2604354630160982547, guid: 0948a0a8a3860854087f5790541bd37d, type: 3}
+  - {fileID: 2604354630160982547, guid: 206a7d9fe55da664da370c37eaad3b7c, type: 3}

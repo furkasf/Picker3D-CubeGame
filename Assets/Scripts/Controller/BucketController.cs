@@ -28,9 +28,16 @@ public class BucketController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
  
-        collectedBallNumber++;
-        //for not trriger with same object
-        //other.gameObject.GetComponent<SphereCollider>().enabled = false;
+        if(other.tag == "Collected" || other.tag == "Collectable")
+        {
+            other.gameObject.tag = "InBasket";
+            collectedBallNumber++;
+            //also increase Score
+            UIController.instance.score++;
+            int gameScore = UIController.instance.score;
+            UIController.instance.ScoreText.text =  "Score" + " / " + gameScore;
+        }
+
         score.text = maxBallCapacity + " / " + collectedBallNumber;
 
         //that long compational expensive aproac refatored basicly use ball counter in plater class
@@ -76,14 +83,13 @@ public class BucketController : MonoBehaviour
             //add particul if you find a time
             StartCoroutine(EventController.instance.SyncTheTrail(ID));
             PlayerControler.instance.collectedBallCounter = 0;
-            collectedBallNumber = 0;
         }
         else if(PlayerControler.instance.collectedBallCounter < maxBallCapacity && collectedBallNumber < maxBallCapacity)
         {
             Destroy(other.gameObject, 0.2f);
             UIController.instance.loseUI.SetActive(true);
             PlayerControler.instance.isStop = true;
-            collectedBallNumber = 0;
+            PlayerControler.instance.collectedBallCounter = 0;
         }
     }
 

@@ -8,7 +8,6 @@ public class PlayerControler : MonoBehaviour
     static public PlayerControler instance;
 
     [Header("player speed")]
-    public List<GameObject> collectedBalls;
     [SerializeField] float duration;
     public int collectedBallCounter;
     public bool isStop;
@@ -20,8 +19,7 @@ public class PlayerControler : MonoBehaviour
     private void Awake()
     {
         duration = 5f;
-        isStop = true;
-        collectedBalls = new List<GameObject>();
+        isStop = true;    
         move = GetComponent<PlayerMoveMouse>();
         collectedBallCounter = 0;
         if(instance == null) instance = this;
@@ -45,7 +43,6 @@ public class PlayerControler : MonoBehaviour
             other.tag = "Collected";
             //instead of adding script companent run time dynamicly this way chiper way to do
             other.GetComponent<ForceControll>().enabled = true; ;
-            collectedBalls.Add(other.gameObject);
         }
         if (other.tag == "FinishLine")
         {

@@ -10,6 +10,12 @@ public class TriggerController : MonoBehaviour
         {
             Debug.Log("triggered");
             PlayerControler.instance.isStop = true;
+            if(PlayerControler.instance.collectedBallCounter == 0)
+            {
+                UIController.instance.loseUI.SetActive(true);
+                PlayerControler.instance.isStop = true;
+                PlayerControler.instance.collectedBallCounter = 0;
+            }
             EventController.instance.PushCollectable();
         }
     }

@@ -1204,7 +1204,8 @@ MonoBehaviour:
   loseUI: {fileID: 332348345}
   nextLevelUI: {fileID: 1284052940}
   startUI: {fileID: 736198219}
-  Score: {fileID: 1872542375}
+  ScoreText: {fileID: 1872542375}
+  score: 0
 --- !u!1 &1194391906
 GameObject:
   m_ObjectHideFlags: 0

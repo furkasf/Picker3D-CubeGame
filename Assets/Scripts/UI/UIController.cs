@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
@@ -11,7 +12,8 @@ public class UIController : MonoBehaviour
     public GameObject loseUI;
     public GameObject nextLevelUI;
     public GameObject startUI;
-    public GameObject Score;
+    public TMP_Text ScoreText;
+    public int score;
 
     private void Awake()
     {

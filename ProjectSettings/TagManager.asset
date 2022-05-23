@@ -7,6 +7,7 @@ TagManager:
   - Collected
   - Collectable
   - FinishLine
+  - InBasket
   layers:
   - Default
   - TransparentFX
