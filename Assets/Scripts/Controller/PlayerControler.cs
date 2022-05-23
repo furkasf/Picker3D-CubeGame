@@ -20,6 +20,7 @@ public class PlayerControler : MonoBehaviour
     private void Awake()
     {
         duration = 5f;
+        isStop = true;
         collectedBalls = new List<GameObject>();
         move = GetComponent<PlayerMoveMouse>();
         collectedBallCounter = 0;

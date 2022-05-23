@@ -18,11 +18,11 @@ public class LevelController : MonoBehaviour
 
     public void NextLevel()
     {
+        level++;
         if (level < maxLevel)
         {
             PlayerControler.instance.collectedBallCounter = 0;
             Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
-            level++;
             Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
             Player.position = gameSettings.playerDefaultPos;
             UIController.instance.nextLevelUI.SetActive(false);
@@ -39,6 +39,9 @@ public class LevelController : MonoBehaviour
         PlayerControler.instance.collectedBallCounter = 0;
         Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
         Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
+        PlayerControler.instance.isStop = true;
+        Player.position = gameSettings.playerDefaultPos;
+        UIController.instance.loseUI.SetActive(false);
         UIController.instance.startUI.SetActive(true);
     }
 
