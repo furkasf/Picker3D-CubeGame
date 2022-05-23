@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LevelController : MonoBehaviour
 {
-    public GameObject UI;
     public GameSettings gameSettings;
     public Transform Player;
     int level = 0;
@@ -26,12 +25,13 @@ public class LevelController : MonoBehaviour
             level++;
             Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
             Player.position = gameSettings.playerDefaultPos;
-            UI.SetActive(false);
+            UIController.instance.nextLevelUI.SetActive(false);
+            UIController.instance.startUI.SetActive(true);
 
         }
         else
         {
-            //game open wictory panel 
+            UIController.instance.winUI.SetActive(true);
         }
     }
     public void RestartLevel()
@@ -39,6 +39,18 @@ public class LevelController : MonoBehaviour
         PlayerControler.instance.collectedBallCounter = 0;
         Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
         Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
-        UI.SetActive(false);
+        UIController.instance.startUI.SetActive(true);
+    }
+
+    public void RestartGame()
+    {
+        level = 0;
+        PlayerControler.instance.collectedBallCounter = 0;
+        Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
+        level++;
+        Instantiate(gameSettings.LevelPrefabs[0].gameObject, GameObject.Find("TheLevelContailner").transform);
+        Player.position = gameSettings.playerDefaultPos;
+        UIController.instance.winUI.SetActive(false);
+        UIController.instance.startUI.SetActive(true);
     }
 }

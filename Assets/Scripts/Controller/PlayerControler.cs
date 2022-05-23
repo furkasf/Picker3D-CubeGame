@@ -12,7 +12,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] float duration;
     public int collectedBallCounter;
     public bool isStop;
-    public GameObject ui;
+
 
 
     IPlayerMove move;
@@ -23,19 +23,22 @@ public class PlayerControler : MonoBehaviour
         collectedBalls = new List<GameObject>();
         move = GetComponent<PlayerMoveMouse>();
         collectedBallCounter = 0;
-        isStop = false;
         if(instance == null) instance = this;
     }
 
     private void Update()
     {
-       if(!isStop)
-           move.Move(duration);
+        if (Input.GetMouseButtonDown(0) && UIController.instance.startUI.active)
+        {
+            isStop = false;
+            UIController.instance.startUI.SetActive(false);
+        }
+        if (!isStop) move.Move(duration);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Collectable")
+        if (other.tag == "Collectable")
         {
             collectedBallCounter++;
             other.tag = "Collected";
@@ -43,8 +46,12 @@ public class PlayerControler : MonoBehaviour
             other.GetComponent<ForceControll>().enabled = true; ;
             collectedBalls.Add(other.gameObject);
         }
-        if (other.tag == "FinishLine") 
-                isStop = true; //after add push ford the player to laaderpath also activate the fire particul end of player
-                ui.SetActive(true);
-    }
+        if (other.tag == "FinishLine")
+        {
+            isStop = true;
+            UIController.instance.nextLevelUI.SetActive(true);
+            //after add push ford the player to laaderpath also activate the fire particul end of player
+        }
+
+    }          
 }

@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 8079287421474108373}
   m_Layer: 0
   m_Name: FinishLIne
-  m_TagString: Untagged
+  m_TagString: FinishLine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1715,7 +1715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 2
-  maxBallCapacity: 20
+  maxBallCapacity: 5
 --- !u!114 &8239932909940097783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3500,7 +3500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 1
-  maxBallCapacity: 20
+  maxBallCapacity: 5
 --- !u!1001 &5656160015401169521
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4239,7 +4239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ID: 3
-  maxBallCapacity: 10
+  maxBallCapacity: 5
 --- !u!1001 &6629916535035247555
 PrefabInstance:
   m_ObjectHideFlags: 0

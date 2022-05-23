@@ -78,7 +78,7 @@ public class BucketController : MonoBehaviour
         else if(PlayerControler.instance.collectedBallCounter < maxBallCapacity && collectedBallNumber < maxBallCapacity)
         {
             Destroy(other.gameObject, 0.2f);
-            //open game ui
+            UIController.instance.loseUI.SetActive(true);
         }
     }
 
