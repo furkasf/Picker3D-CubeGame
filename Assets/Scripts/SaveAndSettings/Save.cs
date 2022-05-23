@@ -5,8 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Save
 {
-    public Transform level;
-    public Transform Player;
+    public int currentlevel;
     public int score;
-
 }

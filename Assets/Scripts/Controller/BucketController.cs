@@ -35,7 +35,7 @@ public class BucketController : MonoBehaviour
             //also increase Score
             UIController.instance.score++;
             int gameScore = UIController.instance.score;
-            UIController.instance.ScoreText.text =  "Score" + " / " + gameScore;
+            UIController.instance.ScoreText.text =  "Score" + " : " + gameScore;
         }
 
         score.text = maxBallCapacity + " / " + collectedBallNumber;

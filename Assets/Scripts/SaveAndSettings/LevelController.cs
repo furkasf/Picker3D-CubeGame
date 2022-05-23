@@ -25,6 +25,9 @@ public class LevelController : MonoBehaviour
             Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
             Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
             Player.position = gameSettings.playerDefaultPos;
+            //save the progress
+            int currenScore = UIController.instance.score;
+            SaveController.instance.SaveGame(level, currenScore);
             UIController.instance.nextLevelUI.SetActive(false);
             UIController.instance.startUI.SetActive(true);
 
@@ -36,13 +39,30 @@ public class LevelController : MonoBehaviour
     }
     public void RestartLevel()
     {
-        PlayerControler.instance.collectedBallCounter = 0;
-        Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
-        Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
-        PlayerControler.instance.isStop = true;
-        Player.position = gameSettings.playerDefaultPos;
-        UIController.instance.loseUI.SetActive(false);
-        UIController.instance.startUI.SetActive(true);
+        if (SaveController.instance.LoadGameSave() != null)
+        {
+            Save saveFile = SaveController.instance.LoadGameSave();
+            PlayerControler.instance.collectedBallCounter = 0;
+            Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
+            Instantiate(gameSettings.LevelPrefabs[saveFile.currentlevel].gameObject, GameObject.Find("TheLevelContailner").transform);
+            UIController.instance.score = saveFile.score;
+            Player.position = gameSettings.playerDefaultPos;
+            UIController.instance.loseUI.SetActive(false);
+            UIController.instance.startUI.SetActive(true);
+            return;
+        }
+        else
+        {
+            //because if save file doesnt created that mean player still first level
+            UIController.instance.score = 0;
+            PlayerControler.instance.collectedBallCounter = 0;
+            Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
+            Instantiate(gameSettings.LevelPrefabs[0].gameObject, GameObject.Find("TheLevelContailner").transform);
+            PlayerControler.instance.isStop = true;
+            Player.position = gameSettings.playerDefaultPos;
+            UIController.instance.loseUI.SetActive(false);
+            UIController.instance.startUI.SetActive(true);
+        }
     }
 
     public void RestartGame()
@@ -55,5 +75,6 @@ public class LevelController : MonoBehaviour
         Player.position = gameSettings.playerDefaultPos;
         UIController.instance.winUI.SetActive(false);
         UIController.instance.startUI.SetActive(true);
+        UIController.instance.score = 0;
     }
 }
