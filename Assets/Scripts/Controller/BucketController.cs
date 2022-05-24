@@ -40,7 +40,7 @@ public class BucketController : MonoBehaviour
 
         score.text = maxBallCapacity + " / " + collectedBallNumber;
 
-        //that long compational expensive aproac refatored basicly use ball counter in plater class
+        //that long compational expensive aproac refatored basicly use ball counter in playerController class
         #region
         ////if collected balls >= max ballcapatiy => destroy ball and start coroutine
         ////after clean up all balls from list
@@ -79,14 +79,14 @@ public class BucketController : MonoBehaviour
 
         if(collectedBallNumber >= maxBallCapacity)
         {
-            Destroy(other.gameObject, 0.2f);
+            other.gameObject.SetActive(false);
             //add particul if you find a time
             StartCoroutine(EventController.instance.SyncTheTrail(ID));
             PlayerControler.instance.collectedBallCounter = 0;
         }
         else if(PlayerControler.instance.collectedBallCounter < maxBallCapacity && collectedBallNumber < maxBallCapacity)
         {
-            Destroy(other.gameObject, 0.2f);
+            other.gameObject.SetActive(false);
             UIController.instance.loseUI.SetActive(true);
             PlayerControler.instance.isStop = true;
             PlayerControler.instance.collectedBallCounter = 0;

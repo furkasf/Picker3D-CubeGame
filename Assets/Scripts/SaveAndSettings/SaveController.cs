@@ -14,17 +14,17 @@ public class SaveController : MonoBehaviour
         Debug.Log(Application.persistentDataPath);
     }
 
-    Save SaveObjectsInGame(int _levelindex, int _score)
+    Save SaveObjectsInGame(int _score)
     {
         Save save = new Save();
-        save.currentlevel = _levelindex;
+        //save.currentlevel = _levelindex; that creat bug when level restar need to refactor
         save.score = _score;
         return save;
     }
 
-    public void SaveGame(int _levelindex, int _score)
+    public void SaveGame(int _score)
     {
-        Save save = SaveObjectsInGame(_levelindex, _score);
+        Save save = SaveObjectsInGame(_score);
         BinaryFormatter bf = new BinaryFormatter();
         FileStream fs = File.Create(Application.persistentDataPath + "/picker3D.save");
         bf.Serialize(fs, save);

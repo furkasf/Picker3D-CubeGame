@@ -5,6 +5,6 @@ using UnityEngine;
 [System.Serializable]
 public class Save
 {
-    public int currentlevel;
+    //public int currentlevel;
     public int score;
 }

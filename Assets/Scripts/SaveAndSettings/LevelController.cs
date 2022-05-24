@@ -28,7 +28,7 @@ public class LevelController : MonoBehaviour
             Player.position = gameSettings.playerDefaultPos;
             //save the progress
             int currenScore = UIController.instance.score;
-            SaveController.instance.SaveGame(level, currenScore);
+            SaveController.instance.SaveGame(currenScore);
             UIController.instance.nextLevelUI.SetActive(false);
             UIController.instance.startUI.SetActive(true);
 
@@ -45,7 +45,7 @@ public class LevelController : MonoBehaviour
             Save saveFile = SaveController.instance.LoadGameSave();
             PlayerControler.instance.collectedBallCounter = 0;
             Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
-            Instantiate(gameSettings.LevelPrefabs[saveFile.currentlevel].gameObject, GameObject.Find("TheLevelContailner").transform);
+            Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
             UIController.instance.score = saveFile.score;
             Player.position = gameSettings.playerDefaultPos;
             UIController.instance.loseUI.SetActive(false);
