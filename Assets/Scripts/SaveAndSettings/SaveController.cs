@@ -12,6 +12,11 @@ public class SaveController : MonoBehaviour
     {
         if(instance == null) instance = this;
         Debug.Log(Application.persistentDataPath);
+        if(File.Exists(Application.persistentDataPath + "/picker3D.save"))
+        {
+            SaveGame(0);
+        }
+       
     }
 
     Save SaveObjectsInGame(int _score)
@@ -44,7 +49,6 @@ public class SaveController : MonoBehaviour
         }
         else 
         {
-            Debug.Log("leve doesnt saved");
             return null;
         }
     }

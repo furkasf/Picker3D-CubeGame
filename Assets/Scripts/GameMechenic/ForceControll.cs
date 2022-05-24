@@ -13,7 +13,8 @@ public class ForceControll : MonoBehaviour
 
     private void Start()
     {
-        EventController.instance.PushCollectableItemEvent += PushAllCollectedItem;
+        if(this != null)
+            EventController.instance.PushCollectableItemEvent += PushAllCollectedItem;
     }
 
     void PushAllCollectedItem()
@@ -21,14 +22,26 @@ public class ForceControll : MonoBehaviour
 
         if (transform.tag == "Collected")
         {
-            rb.AddForce(Vector3.forward * 10, ForceMode.Impulse);
+            rb.AddForce(Vector3.forward * 15, ForceMode.Impulse);
         }
         
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Road")
+        {
+            if(gameObject.tag != "Collected")
+            {
+                rb.isKinematic = true;
+            }
+        }
+    }
+
     private void OnDestroy()
     {
-        EventController.instance.PushCollectableItemEvent -= PushAllCollectedItem;
+        if(gameObject != null)
+            EventController.instance.PushCollectableItemEvent -= PushAllCollectedItem;
         //avtive paticul effect
     }
 }

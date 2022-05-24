@@ -3,37 +3,48 @@ using UnityEngine;
 
 public class PlayerMoveMouse : MonoBehaviour , IPlayerMove
 {
-    private Vector3 _touchEnd;
-    private Vector3 _touchStart;
+    private Vector3 _oldMousePosition;
+    private float _mouseSensitivity = 0.05f;
 
-    public void Move(float _duration)
+    public void Move(float Dureation)
     {
-        transform.position += Vector3.forward * 5 * Time.deltaTime;
+        FixedMove(Dureation);
+        InputMove();
+        _oldMousePosition = Input.mousePosition;
+    }
 
-        if (Input.GetMouseButtonDown(0))
+    private float DeltaMousePosition()
+    {
+        Vector3 delta = Input.mousePosition - _oldMousePosition;
+        return delta.x * _mouseSensitivity;
+    }
+
+    private void CheckPosition()
+    {
+        if (transform.position.x > 9.4f)
         {
-            _touchStart = Input.mousePosition - _touchStart;
+            transform.position = new Vector3(9.4f, transform.position.y, transform.position.z);
         }
-        else if (Input.GetMouseButton(0))
+        else if (transform.position.x < 4.3f)
         {
-            _touchEnd = Input.mousePosition - _touchStart;
-
-            if(_touchEnd.x > 0)
-            {
-                float move = Mathf.Clamp(transform.position.x + 1, -5, 5);
-                transform.DOMoveX(move, _duration, false);
-            }
-            else if(_touchEnd.x < 0)
-            {
-                float move = Mathf.Clamp(transform.position.x - 1, -5, 5);
-                transform.DOMoveX(move, _duration, false);
-            }
-            ResetActions();
+            transform.position = new Vector3(4.3f, transform.position.y, transform.position.z);
         }
     }
 
-    private void ResetActions()
+    private void InputMove()
     {
-        _touchEnd = _touchEnd = Vector3.zero;
+
+        if (Input.GetAxis("Fire1") > .5f)
+        {
+            transform.Translate(Vector3.right * DeltaMousePosition() * Time.deltaTime);
+            CheckPosition();
+        }
+
     }
+
+    private void FixedMove(float duration)
+    {
+        transform.Translate(Vector3.forward * duration * Time.deltaTime);
+    }
+
 }

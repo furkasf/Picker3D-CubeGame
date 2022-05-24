@@ -40,6 +40,7 @@ public class PlayerControler : MonoBehaviour
         if (other.tag == "Collectable")
         {
             collectedBallCounter++;
+            other.GetComponent<Rigidbody>().isKinematic = false;
             other.tag = "Collected";
             //instead of adding script companent run time dynamicly this way chiper way to do
             other.GetComponent<ForceControll>().enabled = true; ;
@@ -47,8 +48,16 @@ public class PlayerControler : MonoBehaviour
         if (other.tag == "FinishLine")
         {
             isStop = true;
-            UIController.instance.nextLevelUI.SetActive(true);
-            //after add push ford the player to laaderpath also activate the fire particul end of player
+            int curretlevel = LevelController.instance.level;
+            int maxlevel = LevelController.instance.maxLevel;
+            if(curretlevel < maxlevel && curretlevel != maxlevel -1)
+            {
+                UIController.instance.nextLevelUI.SetActive(true);
+            }
+            else
+            {
+                UIController.instance.winUI.SetActive(true);
+            }
         }
 
     }          

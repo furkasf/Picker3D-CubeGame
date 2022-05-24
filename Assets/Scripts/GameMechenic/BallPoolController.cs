@@ -51,4 +51,12 @@ public class BallPoolController : MonoBehaviour
         ballPools.Add(newBall);
         return newBall;
     }
+
+    public void HideAllBalls()
+    {
+        foreach(var ball in ballPools)
+        {
+            ball.SetActive(false);
+        }
+    }
 }

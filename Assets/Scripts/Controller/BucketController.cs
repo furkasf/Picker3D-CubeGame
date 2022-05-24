@@ -9,6 +9,7 @@ public class BucketController : MonoBehaviour
     [SerializeField] private int ID;
     public int maxBallCapacity;
     [SerializeField]int collectedBallNumber;
+    [SerializeField] List<GameObject> balls;
     TextMeshPro score;
 
     private void Awake()
@@ -32,6 +33,7 @@ public class BucketController : MonoBehaviour
         {
             other.gameObject.tag = "InBasket";
             collectedBallNumber++;
+            balls.Add(other.gameObject);
             //also increase Score
             UIController.instance.score++;
             int gameScore = UIController.instance.score;
@@ -79,18 +81,19 @@ public class BucketController : MonoBehaviour
 
         if(collectedBallNumber >= maxBallCapacity)
         {
-            other.gameObject.SetActive(false);
+            foreach (var ball in balls) ball.SetActive(false);
             //add particul if you find a time
             StartCoroutine(EventController.instance.SyncTheTrail(ID));
             PlayerControler.instance.collectedBallCounter = 0;
         }
-        else if(PlayerControler.instance.collectedBallCounter < maxBallCapacity && collectedBallNumber < maxBallCapacity)
+        else if(collectedBallNumber < maxBallCapacity && PlayerControler.instance.collectedBallCounter < maxBallCapacity)
         {
-            other.gameObject.SetActive(false);
+            foreach (var ball in balls) ball.SetActive(false);
             UIController.instance.loseUI.SetActive(true);
             PlayerControler.instance.isStop = true;
             PlayerControler.instance.collectedBallCounter = 0;
         }
     }
 
+ 
 }
