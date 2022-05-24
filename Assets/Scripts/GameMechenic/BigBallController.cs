@@ -17,7 +17,7 @@ public class BigBallController : MonoBehaviour
 
     private void Update()
     {
-        if(Vector3.Distance(player.position, transform.position) < 20f)
+        if(Vector3.Distance(player.position, transform.position) < 15f)
         {
             rb.isKinematic = false;
         }
@@ -28,9 +28,14 @@ public class BigBallController : MonoBehaviour
         for(int i = 0; i < 5; i++)
         {
             GameObject ball = BallPoolController.instance.GetBallFromPool();
-            //use to intantiate ball in round shape otherwise balls can spawn out of scene
-            Vector3 circle = Random.insideUnitSphere.normalized * 0.5f;
-            ball.transform.position = new Vector3(smallBallSpawnPos.x + circle.x, smallBallSpawnPos.y , smallBallSpawnPos.z + circle.z);
+            if(ball.GetComponent<Rigidbody>().isKinematic == true)
+            {
+                ball.GetComponent<Rigidbody>().isKinematic = false;
+                ball.tag = "Collectable";
+            }
+            //use to intantiate ball in round shape otherwise balls can spawn out of Plane
+            Vector3 circle = Random.insideUnitSphere.normalized * 0.2f;
+            ball.transform.position = new Vector3(smallBallSpawnPos.x + circle.x * 0.5f, smallBallSpawnPos.y - 1.4f , smallBallSpawnPos.z + circle.z * 0.5f);
         }
         gameObject.SetActive(false);
     }

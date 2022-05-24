@@ -30,13 +30,13 @@ public class PlayerMoveTouch : MonoBehaviour , IPlayerMove
                 
                 if ((_touchEnd.x - _touchStart.x) > 0) 
                 {
-                    float move = Mathf.Clamp(transform.position.x + 1, -5, 5);
+                    float move = Mathf.Clamp(transform.position.x + 1, 4.3f, 9.4f);
                     transform.DOMoveX(move, _duration, false);
                 }
 
                 else if((_touchEnd.x - _touchStart.x) < 0)
                 {
-                    float move = Mathf.Clamp(transform.position.x + 1, -5, 5);
+                    float move = Mathf.Clamp(transform.position.x + 1, 4.3f, 9.4f);
                     transform.DOMoveX(move, _duration, false);
                 }
 

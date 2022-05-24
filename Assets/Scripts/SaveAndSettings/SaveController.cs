@@ -11,8 +11,8 @@ public class SaveController : MonoBehaviour
     private void Awake()
     {
         if(instance == null) instance = this;
-        Debug.Log(Application.persistentDataPath);
-        if(File.Exists(Application.persistentDataPath + "/picker3D.save"))
+        Debug.Log("file exist : " + File.Exists(Application.persistentDataPath + "/picker3D.save"));
+        if(!File.Exists(Application.persistentDataPath + "/picker3D.save"))
         {
             SaveGame(0);
         }
@@ -52,5 +52,14 @@ public class SaveController : MonoBehaviour
             return null;
         }
     }
-
+    private void OnDestroy()
+    {
+        //destroy save file to when restart game other wise when retry to level that cause skore bug that can avoid with good save management system
+        //but I dont have time to implamnet :(
+        Debug.Log("file exist : " + File.Exists(Application.persistentDataPath + "/picker3D.save"));
+        if(File.Exists(Application.persistentDataPath + "/picker3D.save"))
+        {
+            File.Delete(Application.persistentDataPath + "/Picker3D.save");
+        }
+    }
 }

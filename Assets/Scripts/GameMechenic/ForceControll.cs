@@ -13,7 +13,7 @@ public class ForceControll : MonoBehaviour
 
     private void Start()
     {
-        if(this != null)
+        if(gameObject != null)
             EventController.instance.PushCollectableItemEvent += PushAllCollectedItem;
     }
 

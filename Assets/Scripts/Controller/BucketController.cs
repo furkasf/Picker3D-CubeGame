@@ -31,7 +31,6 @@ public class BucketController : MonoBehaviour
  
         if(other.tag == "Collected" || other.tag == "Collectable")
         {
-            other.gameObject.tag = "InBasket";
             collectedBallNumber++;
             balls.Add(other.gameObject);
             //also increase Score
@@ -81,7 +80,12 @@ public class BucketController : MonoBehaviour
 
         if(collectedBallNumber >= maxBallCapacity)
         {
-            foreach (var ball in balls) ball.SetActive(false);
+            foreach (var ball in balls) 
+            {
+                ball.tag = "Collectable";
+                ball.GetComponent<ForceControll>().enabled = false;
+                ball.SetActive(false);
+            }
             //add particul if you find a time
             StartCoroutine(EventController.instance.SyncTheTrail(ID));
             PlayerControler.instance.collectedBallCounter = 0;

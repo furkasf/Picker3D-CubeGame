@@ -56,6 +56,8 @@ public class BallPoolController : MonoBehaviour
     {
         foreach(var ball in ballPools)
         {
+            ball.tag = "Collectable";
+            ball.GetComponent<ForceControll>().enabled = false;
             ball.SetActive(false);
         }
     }

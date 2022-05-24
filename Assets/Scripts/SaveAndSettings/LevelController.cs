@@ -24,6 +24,7 @@ public class LevelController : MonoBehaviour
         level++;
         if (level < maxLevel)
         {
+            BallPoolController.instance.HideAllBalls();
             PlayerControler.instance.collectedBallCounter = 0;
             Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
             Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
@@ -39,6 +40,7 @@ public class LevelController : MonoBehaviour
         else
         {
             //reset save record
+            BallPoolController.instance.HideAllBalls();
             SaveController.instance.SaveGame(0);
             UIController.instance.nextLevelUI.SetActive(false);
             UIController.instance.winUI.SetActive(true);
@@ -54,6 +56,7 @@ public class LevelController : MonoBehaviour
             Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
             Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
             UIController.instance.score = saveFile.score;
+            UIController.instance.ScoreText.text = "Score : " + saveFile.score;
             Player.position = gameSettings.playerDefaultPos;
             UIController.instance.loseUI.SetActive(false);
             UIController.instance.startUI.SetActive(true);
@@ -64,6 +67,7 @@ public class LevelController : MonoBehaviour
             //because if save file doesnt created that mean player still first level
             BallPoolController.instance.HideAllBalls();
             UIController.instance.score = 0;
+            UIController.instance.ScoreText.text = "Score : " + 0;
             PlayerControler.instance.collectedBallCounter = 0;
             Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
             Instantiate(gameSettings.LevelPrefabs[0].gameObject, GameObject.Find("TheLevelContailner").transform);
