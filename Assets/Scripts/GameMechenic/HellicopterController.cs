@@ -8,16 +8,16 @@ public class HellicopterController : MonoBehaviour
     [SerializeField] Transform target;
     [SerializeField] float duration;
     [SerializeField] Transform planor;
-    [SerializeField] GameObject ballPrefab;
-
+    
     private void Awake()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        planor = transform.GetChild(1);
     }
 
     void Start()
     {
-        planor.DORotate(new Vector3(0, 360, 0), duration * 0.5f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart);
+        planor.DOLocalRotate(new Vector3(0, 360, 0), 1f, RotateMode.FastBeyond360).SetLoops(-1);
         duration = 1.5f;
     }
 
