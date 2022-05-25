@@ -5,27 +5,27 @@ using UnityEngine;
 
 public class HellicopterController : MonoBehaviour
 {
-    [SerializeField] Transform _target;
-    [SerializeField] float _duration;
-    [SerializeField] Transform _planor;
-    [SerializeField] GameObject _BigballPrefab;
+    [SerializeField] Transform target;
+    [SerializeField] float duration;
+    [SerializeField] Transform planor;
+    [SerializeField] GameObject ballPrefab;
 
     private void Awake()
     {
-        _target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     void Start()
     {
-        _planor.DORotate(new Vector3(0, 360, 0), _duration * 0.5f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart);
-        _duration = 1.5f;
+        planor.DORotate(new Vector3(0, 360, 0), duration * 0.5f, RotateMode.FastBeyond360).SetLoops(-1, LoopType.Restart);
+        duration = 1.5f;
     }
 
 
     void Update()
     {
 
-        if (Vector3.Distance(_target.position, transform.position) < 10f)
+        if (Vector3.Distance(target.position, transform.position) < 10f)
         {
             StartCoroutine(SyncAnimations());
         }
@@ -47,13 +47,13 @@ public class HellicopterController : MonoBehaviour
 
     IEnumerator SyncAnimations()
     {
-        Invoke("SpawnBalls", _duration * 0.5f);
-        transform.DOLocalMove(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 10), _duration).SetEase(Ease.Linear);
-        yield return new WaitForSecondsRealtime(_duration);
-        Invoke("SpawnBalls", _duration * 0.5f);
-        transform.DOLocalMove(new Vector3(transform.localPosition.x + 6.5f, transform.localPosition.y, transform.localPosition.z), _duration).SetEase(Ease.Linear);
-        yield return new WaitForSecondsRealtime(_duration);
-        transform.DOLocalMove(new Vector3(transform.localPosition.x , transform.localPosition.y + 20, transform.localPosition.z), _duration).SetEase(Ease.Linear).OnComplete(() => gameObject.SetActive(false));
+        Invoke("SpawnBalls", duration * 0.5f);
+        transform.DOLocalMove(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 10), duration).SetEase(Ease.Linear);
+        yield return new WaitForSecondsRealtime(duration);
+        Invoke("SpawnBalls", duration * 0.5f);
+        transform.DOLocalMove(new Vector3(transform.localPosition.x + 6.5f, transform.localPosition.y, transform.localPosition.z), duration).SetEase(Ease.Linear);
+        yield return new WaitForSecondsRealtime(duration);
+        transform.DOLocalMove(new Vector3(transform.localPosition.x , transform.localPosition.y + 20, transform.localPosition.z), duration).SetEase(Ease.Linear).OnComplete(() => gameObject.SetActive(false));
         yield return null;
     }
 }
