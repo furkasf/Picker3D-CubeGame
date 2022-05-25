@@ -9,6 +9,7 @@ public class TriggerController : MonoBehaviour
         if(other.tag == "Player")
         {
             Debug.Log("triggered");
+            if (PlayerSizeControler.instance.bigger) PlayerSizeControler.instance.ReturnOrginalSize();
             PlayerControler.instance.isStop = true;
             if(PlayerControler.instance.collectedBallCounter == 0)
             {
@@ -16,7 +17,7 @@ public class TriggerController : MonoBehaviour
                 PlayerControler.instance.isStop = true;
                 PlayerControler.instance.collectedBallCounter = 0;
             }
-            EventController.instance.PushCollectable();
+            EventController.instance.PushCollectable();         
         }
     }
 

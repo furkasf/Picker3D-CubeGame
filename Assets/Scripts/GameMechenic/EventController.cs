@@ -46,7 +46,8 @@ public class EventController : MonoBehaviour
     {
         //just in case some times when prototypin coresponding object dont have in scene and cause annoying errors
         if (PlayerControler.instance != null)
-        {   
+        {
+            PlayerSizeControler.instance.IncreaseSizeOfPlayer();
             yield return new WaitForSecondsRealtime(2f);
             if (ElevetorUpEvent != null)
                 ElevatorUp(ID);

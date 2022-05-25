@@ -26,6 +26,7 @@ public class LevelController : MonoBehaviour
         {
             BallPoolController.instance.HideAllBalls();
             PlayerControler.instance.collectedBallCounter = 0;
+            PlayerSizeControler.instance.ReturnOrginalSize();
             Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
             Instantiate(gameSettings.LevelPrefabs[level].gameObject, GameObject.Find("TheLevelContailner").transform);
             Player.position = gameSettings.playerDefaultPos;
@@ -42,6 +43,7 @@ public class LevelController : MonoBehaviour
             //reset save record
             BallPoolController.instance.HideAllBalls();
             SaveController.instance.SaveGame(0);
+            PlayerSizeControler.instance.ReturnOrginalSize();
             UIController.instance.nextLevelUI.SetActive(false);
             UIController.instance.winUI.SetActive(true);
         }
@@ -51,6 +53,7 @@ public class LevelController : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/Picker3D.save"))
         {
             BallPoolController.instance.HideAllBalls();
+            PlayerSizeControler.instance.ReturnOrginalSize();
             Save saveFile = SaveController.instance.LoadGameSave();
             PlayerControler.instance.collectedBallCounter = 0;
             Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
@@ -69,6 +72,7 @@ public class LevelController : MonoBehaviour
             UIController.instance.score = 0;
             UIController.instance.ScoreText.text = "Score : " + 0;
             PlayerControler.instance.collectedBallCounter = 0;
+            PlayerSizeControler.instance.ReturnOrginalSize();
             Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
             Instantiate(gameSettings.LevelPrefabs[0].gameObject, GameObject.Find("TheLevelContailner").transform);
             PlayerControler.instance.isStop = true;
@@ -83,6 +87,7 @@ public class LevelController : MonoBehaviour
         level = 0;
         BallPoolController.instance.HideAllBalls();
         PlayerControler.instance.collectedBallCounter = 0;
+        PlayerSizeControler.instance.ReturnOrginalSize();
         Destroy(GameObject.Find("TheLevelContailner").transform.GetChild(0).gameObject);
         SaveController.instance.SaveGame(0);
         Instantiate(gameSettings.LevelPrefabs[0].gameObject, GameObject.Find("TheLevelContailner").transform);
