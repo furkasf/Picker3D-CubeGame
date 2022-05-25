@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2927df0bef9c91488e96dc816683364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPosition: {fileID: 0}
-  Planor: {fileID: 635851133625600597}
-  animationDuration: 1
-  ball: {fileID: 6747023928423974603, guid: 9213656dc8dfe8e43a7ca1d9dd2736d0, type: 3}
+  _target: {fileID: 0}
+  _duration: 0
+  _planor: {fileID: 635851133625600597}
+  _BigballPrefab: {fileID: 5035150466984261845, guid: 9c32078712df98a4f871f75504c16706, type: 3}
 --- !u!1 &6713522163825118404
 GameObject:
   m_ObjectHideFlags: 0
