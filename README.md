@@ -34,7 +34,7 @@ Object Pool And Event System
 I use object Pool for gather all balls use in game very start on game, which reduce to memory allocation and deallocation
 when load and start level from prefabs.
 
-Event System or observer patttern use to outomic and sync to trail System when Player though the tarail area chain of event exacuted
+Event System or observer patttern use to outo and sync to trail System when Player thouch the trail area chain of event exacuted
 and magic is happen.
 
 DoTween
