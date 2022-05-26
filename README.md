@@ -27,7 +27,7 @@ URP settings
 ![Screenshot 2022-05-26 125045](https://user-images.githubusercontent.com/60402673/170466354-00000fff-7cfe-4ec4-80e4-e099f369f91f.png)
 
 I use unity URP asset packet to convert my pipe line to URP, that packed allow to easly made setting on URP on it's scriptable
-object with out requiring write extra script for settings.
+object without requiring write extra script for settings.
 
 Object Pool And Event System
 
