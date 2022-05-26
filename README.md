@@ -14,6 +14,14 @@ I use to BinaryFormater Base save system to create save file to hard drive that 
 to implament to that scale game but I thought to PlayerPrefab use to add setting to game and also file base save Sytem easly convert xml or json base save format just
 in case some point you need to work with remote data base that would be extra helpfull.
 
+Scriptable Objects And PrefabLoading
+
+![Screenshot 2022-05-26 132415](https://user-images.githubusercontent.com/60402673/170469712-4d758cc6-2a4e-4d8d-81fa-0fc6c29aa098.png)
+
+I design all level in prefab format that allow me to easly design new level and load level in runtime from scriptable object, each level actual consist big and
+small number of item when they load in next level or restart reduce to draw call and memory allocation and deallocation , all big number og objects in store ball
+pool,
+
 URP settings
 
 ![Screenshot 2022-05-26 125045](https://user-images.githubusercontent.com/60402673/170466354-00000fff-7cfe-4ec4-80e4-e099f369f91f.png)
