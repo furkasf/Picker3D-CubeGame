@@ -20,11 +20,7 @@ Scriptable Objects And PrefabLoading
 
 I design all level in prefab format that allow me to easly design new level and load level in runtime from scriptable object, each level actual consist big and
 small number of item when they load in next level or restart reduce to draw call and memory allocation and deallocation , all big number og objects in store ball
-pool,
-
-GamePlay
-
-https://drive.google.com/file/d/1p_MET5gObiA4UutAndYx2n0-pgiS9Prp/view?usp=sharing
+pool.
 
 URP settings
 
@@ -51,3 +47,6 @@ CinaMachine
 I use to Cinamation Preaty much as normal camera bigest advantage of cinamachine smooth blending doesnt use in that project
 even orginal game dont use as  I see.
 
+GamePlay
+
+https://drive.google.com/file/d/1p_MET5gObiA4UutAndYx2n0-pgiS9Prp/view?usp=sharing
