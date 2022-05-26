@@ -22,6 +22,10 @@ I design all level in prefab format that allow me to easly design new level and 
 small number of item when they load in next level or restart reduce to draw call and memory allocation and deallocation , all big number og objects in store ball
 pool,
 
+GamePlay
+
+https://drive.google.com/file/d/1p_MET5gObiA4UutAndYx2n0-pgiS9Prp/view?usp=sharing
+
 URP settings
 
 ![Screenshot 2022-05-26 125045](https://user-images.githubusercontent.com/60402673/170466354-00000fff-7cfe-4ec4-80e4-e099f369f91f.png)
