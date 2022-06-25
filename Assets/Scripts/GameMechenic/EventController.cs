@@ -12,6 +12,7 @@ public class EventController : MonoBehaviour
         if(instance == null) instance = this;
     }
 
+    #region elevatorEvent
     public event Action<int> ElevetorUpEvent;
 
     public void ElevatorUp(int ID)
@@ -21,7 +22,9 @@ public class EventController : MonoBehaviour
             ElevetorUpEvent(ID);
         }
     }
+    #endregion
 
+    #region obsticalEvent
     public event Action<int> ObsticalMoveEvent;
 
     public void ObsticalMove(int ID)
@@ -31,7 +34,11 @@ public class EventController : MonoBehaviour
             ObsticalMoveEvent(ID);
         }
     }
+    #endregion
 
+    
+
+    #region CollectableEvent
     public event Action PushCollectableItemEvent;
 
     public void PushCollectable()
@@ -41,6 +48,7 @@ public class EventController : MonoBehaviour
             PushCollectableItemEvent();
         }
     }
+    #endregion
 
     public IEnumerator SyncTheTrail(int ID)
     {
