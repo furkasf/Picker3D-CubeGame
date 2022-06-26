@@ -11,13 +11,15 @@ public class ForceControll : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Start()
-    {
-        if(gameObject != null)
-            EventController.instance.PushCollectableItemEvent += PushAllCollectedItem;
-    }
 
-    void PushAllCollectedItem()
+    #region Subscriptions
+    private void OnEnable() => SubscribeEvent();
+    private void OnDisable() => DeSubscribeEvent();
+    private void SubscribeEvent() => EventController.instance.PushCollectableItemEvent += OnPushAllCollectedItem;
+    private void DeSubscribeEvent() => EventController.instance.PushCollectableItemEvent -= OnPushAllCollectedItem;
+    #endregion
+
+    private void OnPushAllCollectedItem()
     {
 
         if (transform.tag == "Collected")
@@ -29,7 +31,7 @@ public class ForceControll : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Road")
+        if (collision.other.CompareTag("Road"))
         {
             if(gameObject.tag != "Collected")
             {
@@ -38,10 +40,4 @@ public class ForceControll : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        if(gameObject != null)
-            EventController.instance.PushCollectableItemEvent -= PushAllCollectedItem;
-        //avtive paticul effect
-    }
 }
