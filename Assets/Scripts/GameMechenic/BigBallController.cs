@@ -4,44 +4,62 @@ using UnityEngine;
 
 public class BigBallController : MonoBehaviour
 {
-    Transform player;
-    Rigidbody rb;
-    Vector3 smallBallSpawnPos;
+
+    #region Variables
+
+    #region private Variables
+    private Transform _player;
+    private Rigidbody _rb;
+    private Vector3 _smallBallSpawnPos;
+    #endregion
+
+    #endregion
 
     private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        smallBallSpawnPos = transform.position;
-        rb = GetComponent<Rigidbody>();
+        BigBallInitialization();
     }
 
     private void Update()
     {
-        if(Vector3.Distance(player.position, transform.position) < 15f)
-        {
-            rb.isKinematic = false;
-        }
+        CheakDistanceWithPlayer();
     }
 
-    void GetBalls()
+    private void OnCollisionEnter(Collision collision)
     {
-        for(int i = 0; i < 5; i++)
+        GetBalls();
+    }
+
+    private void GetBalls()
+    {
+        for (int i = 0; i < 5; i++)
         {
             GameObject ball = BallPoolController.instance.GetBallFromPool();
-            if(ball.GetComponent<Rigidbody>().isKinematic == true)
+            if (ball.GetComponent<Rigidbody>().isKinematic == true)
             {
                 ball.GetComponent<Rigidbody>().isKinematic = false;
                 ball.tag = "Collectable";
             }
             //use to intantiate ball in round shape otherwise balls can spawn out of Plane
             Vector3 circle = Random.insideUnitSphere.normalized * 0.2f;
-            ball.transform.position = new Vector3(smallBallSpawnPos.x + circle.x * 0.5f, smallBallSpawnPos.y - 1.4f , smallBallSpawnPos.z + circle.z * 0.5f);
+            ball.transform.position = new Vector3(_smallBallSpawnPos.x + circle.x * 0.5f, _smallBallSpawnPos.y - 1.4f, _smallBallSpawnPos.z + circle.z * 0.5f);
         }
         gameObject.SetActive(false);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void BigBallInitialization()
     {
-        GetBalls();
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        _smallBallSpawnPos = transform.position;
+        _rb = GetComponent<Rigidbody>();
+    }
+
+    private void CheakDistanceWithPlayer()
+    {
+        if (Vector3.Distance(_player.position, transform.position) < 15f)
+        {
+            _rb.isKinematic = false;
+        }
+        else return;
     }
 }
