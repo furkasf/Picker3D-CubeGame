@@ -5,34 +5,53 @@ using UnityEngine;
 
 public class HellicopterController : MonoBehaviour
 {
+    #region Variables
+    #region Serialize Variables
     [SerializeField] Transform target;
     [SerializeField] float duration;
     [SerializeField] Transform planor;
-    
+    #endregion
+    #endregion
     private void Awake()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        planor = transform.GetChild(1);
+        HellicopterInitilization();
     }
 
-    void Start()
+    private void Start()
+    {
+        RotatePlanor();
+    }
+
+
+    private void Update()
+    {
+        CheakDistancewithPlayer();
+    }
+
+    private void CheakDistancewithPlayer()
+    {
+        if (Vector3.Distance(target.position, transform.position) < 10f)
+        {
+            StartCoroutine(SyncAnimations());
+        }
+    }
+
+    #region Initilizations
+    private void RotatePlanor()
     {
         planor.DOLocalRotate(new Vector3(0, 360, 0), 1f, RotateMode.FastBeyond360).SetLoops(-1);
         duration = 1.5f;
     }
 
-
-    void Update()
+    private void HellicopterInitilization()
     {
-
-        if (Vector3.Distance(target.position, transform.position) < 10f)
-        {
-            StartCoroutine(SyncAnimations());
-        }
-
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        planor = transform.GetChild(1);
     }
+    #endregion
 
-    void SpawnBalls()
+    #region Animaton And Spawn
+    private void SpawnBalls()
     {
         GameObject ball = BallPoolController.instance.GetBallFromPool();
         //set as child of parent
@@ -56,5 +75,5 @@ public class HellicopterController : MonoBehaviour
         transform.DOLocalMove(new Vector3(transform.localPosition.x , transform.localPosition.y + 20, transform.localPosition.z), duration).SetEase(Ease.Linear).OnComplete(() => gameObject.SetActive(false));
         yield return null;
     }
+    #endregion
 }
-  
