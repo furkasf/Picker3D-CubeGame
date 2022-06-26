@@ -31,11 +31,15 @@ public class BucketController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
- 
-        if(other.CompareTag("Collected") || other.CompareTag("Collectable") )
+        TriggerLogic(other);
+    }
+
+    private void TriggerLogic(Collider other)
+    {
+        if (other.CompareTag("Collected") || other.CompareTag("Collectable"))
         {
             UpdateGameScore(other);
-    
+
         }
 
         UpdateBasketScore();
@@ -44,7 +48,7 @@ public class BucketController : MonoBehaviour
         {
             BasketOnFull();
         }
-        else if(collectedBallNumber < maxBallCapacity && PlayerControler.instance.collectedBallCounter < maxBallCapacity)
+        else if (collectedBallNumber < maxBallCapacity && PlayerControler.instance.collectedBallCounter < maxBallCapacity)
         {
             BasketNotFull();
         }
@@ -52,7 +56,7 @@ public class BucketController : MonoBehaviour
 
     private void BucketInitialization()
     {
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).name == "Score")
             {
