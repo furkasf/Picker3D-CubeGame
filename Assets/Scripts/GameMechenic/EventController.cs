@@ -51,7 +51,6 @@ public class EventController : MonoBehaviour
     #endregion
     #endregion
 
-
     public IEnumerator SyncTheTrail(int ID)
     {
         //just in case some times when prototypin coresponding object dont have in scene and cause annoying errors

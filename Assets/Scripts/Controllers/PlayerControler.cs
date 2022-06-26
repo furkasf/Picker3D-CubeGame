@@ -7,14 +7,13 @@ public class PlayerControler : MonoBehaviour
 {
     static public PlayerControler instance;
 
+    #region Variables
     [Header("player speed")]
     [SerializeField] float duration;
     public int collectedBallCounter;
     public bool isStop;
-
-
-
-    IPlayerMove move;
+    private IPlayerMove move;
+    #endregion
 
     private void Awake()
     {
@@ -37,7 +36,7 @@ public class PlayerControler : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Collectable")
+        if (other.CompareTag("Collectable"))
         {
             collectedBallCounter++;
             other.GetComponent<Rigidbody>().isKinematic = false;
@@ -45,7 +44,7 @@ public class PlayerControler : MonoBehaviour
             //instead of adding script companent run time dynamicly this way chiper way to do
             other.GetComponent<ForceControll>().enabled = true; ;
         }
-        if (other.tag == "FinishLine")
+        if (other.CompareTag("FinishLine"))
         {
             isStop = true;
             int curretlevel = LevelController.instance.level;

@@ -5,33 +5,44 @@ using UnityEngine;
 
 public class ObsticalController : MonoBehaviour
 {
-    [SerializeField]private Transform _rightObstical;
-    [SerializeField]private Transform _leftObstical;
+    #region Variables
+    #region Serialize Variables
+    [SerializeField]private Transform RightObstical;
+    [SerializeField]private Transform LeftObstical;
     [SerializeField] private int ID;
+    #endregion
+    #endregion
 
     private void Awake()
     {
-        _rightObstical = transform.GetChild(0).GetChild(0);
-        _leftObstical = transform.GetChild(1).GetChild(0);
+        InitializeObstical();
     }
 
-    void Start()
+    private void Start()
     {
-        EventController.instance.ObsticalMoveEvent += MoveFromRoad;
+        SubscribeEvent();
     }
 
-    void MoveFromRoad(int ID)
+    #region Subscriptions
+    //private void OnEnable() => SubscribeEvent();
+    private void OnDisable() => DeSubscribeEvent();
+    private void SubscribeEvent() => EventController.instance.ObsticalMoveEvent += MoveFromRoad;
+    private void DeSubscribeEvent() => EventController.instance.ObsticalMoveEvent -= MoveFromRoad;
+    #endregion
+
+    private void MoveFromRoad(int ID)
     {
        if(ID == this.ID)
         {
-            _rightObstical.DORotate(new Vector3(0, 0, 90), 1);
-            _leftObstical.DORotate(new Vector3(0, 0, 90), 1);
-            Debug.Log(_rightObstical.name + "          " + _leftObstical.name);
+            RightObstical.DORotate(new Vector3(0, 0, 90), 1);
+            LeftObstical.DORotate(new Vector3(0, 0, 90), 1);
+            Debug.Log(RightObstical.name + "          " + LeftObstical.name);
         }
     }
 
-    private void OnDestroy()
+    private void InitializeObstical()
     {
-        EventController.instance.ObsticalMoveEvent -= MoveFromRoad;
+        RightObstical = transform.GetChild(0).GetChild(0);
+        LeftObstical = transform.GetChild(1).GetChild(0);
     }
 }

@@ -7,8 +7,12 @@ public class ElevatorControler : MonoBehaviour
 {
     [SerializeField] private int ID;
 
+    private void Start()
+    {
+        SubscribeEvent();
+    }
     #region Subscriptions
-    private void OnEnable() => SubscribeEvent();
+    //private void OnEnable() => SubscribeEvent();
     private void OnDisable() => DeSubscribeEvent();
     private void SubscribeEvent() => EventController.instance.ElevetorUpEvent += OnMoveUpElevator;
     private void DeSubscribeEvent() => EventController.instance.ElevetorUpEvent -= OnMoveUpElevator;
