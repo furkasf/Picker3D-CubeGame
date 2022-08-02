@@ -39,12 +39,12 @@ when load and start level from prefabs.
 Event System or observer patttern use to outo and sync to trail System when Player thouch the trail area chain of event exacuted
 and magic is happen.
 
-DoTween
+DOTween 
 
 That libary use to change scale of player after trail and and animation of hellicopter. that actualy very usefull libary with poor
 documantation.
 
-CinaMachine
+Cinemachine 
 
 I use to Cinamation Preaty much as normal camera bigest advantage of cinamachine smooth blending doesnt use in that project
 even orginal game dont use as  I see.
